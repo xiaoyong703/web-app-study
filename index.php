@@ -5,17 +5,13 @@ session_start();
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
-// Check if user is logged in
-$isLoggedIn = isset($_SESSION['user_id']) && !str_starts_with($_SESSION['user_id'], 'guest_');
-
-// Redirect to login if not authenticated and not already on login/register page
-$page = $_GET['page'] ?? 'dashboard';
-$publicPages = ['login', 'register'];
-
-if (!$isLoggedIn && !in_array($page, $publicPages)) {
+// Simple authentication check - redirect to login if not logged in
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     header('Location: pages/login.php');
     exit();
 }
+
+$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 ?>
 <!DOCTYPE html>
 <html lang="en">

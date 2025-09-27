@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Debug Test</title>
+    <style>
+        /* Inline test styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        .test-card {
+            background: white;
+            color: #333;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .success {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .error {
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .btn {
+            background: #6366f1;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+        .btn:hover {
+            background: #5855eb;
+        }
+        .result {
+            background: #f3f4f6;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: monospace;
+            border-left: 4px solid #6366f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-card">
+        <h1 class="success">🔍 CSS Debug Test</h1>
+        <p>If you can see this styled page with:</p>
+        <ul>
+            <li>Purple gradient background</li>
+            <li>White card with shadow</li>
+            <li>Colored text and buttons</li>
+        </ul>
+        <p><strong>Then your browser DOES support modern CSS!</strong></p>
+        
+        <button class="btn" onclick="testExternalCSS()">Test External CSS Loading</button>
+        <button class="btn" onclick="testCSSVariables()">Test CSS Variables</button>
+        
+        <div id="results"></div>
+        
+        <h3>Manual Tests:</h3>
+        <ol>
+            <li><strong>Try this URL:</strong> <a href="https://www.xynotoky.online/assets/css/style.css" target="_blank">View CSS File</a></li>
+            <li><strong>Check Network Tab:</strong> Look for style.css - does it load?</li>
+            <li><strong>Check Console:</strong> Any red errors?</li>
+        </ol>
+    </div>
+
+    <script>
+        function testExternalCSS() {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'assets/css/style.css';
+            
+            link.onload = function() {
+                showResult('✅ External CSS loaded successfully!', 'success');
+                testCSSVariables();
+            };
+            
+            link.onerror = function() {
+                showResult('❌ External CSS failed to load!', 'error');
+            };
+            
+            document.head.appendChild(link);
+        }
+        
+        function testCSSVariables() {
+            // Test if CSS variables work
+            const testDiv = document.createElement('div');
+            testDiv.style.cssText = `
+                --test-color: #6366f1;
+                background-color: var(--test-color);
+                width: 50px;
+                height: 20px;
+                display: inline-block;
+                margin-right: 10px;
+            `;
+            
+            document.body.appendChild(testDiv);
+            
+            const computed = getComputedStyle(testDiv);
+            const bgColor = computed.backgroundColor;
+            
+            if (bgColor.includes('99, 102, 241') || bgColor.includes('#6366f1')) {
+                showResult('✅ CSS Variables work in your browser!', 'success');
+            } else {
+                showResult('❌ CSS Variables NOT supported! Background: ' + bgColor, 'error');
+            }
+            
+            document.body.removeChild(testDiv);
+        }
+        
+        function showResult(message, type) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = 'result';
+            div.innerHTML = `<span class="${type}">${message}</span>`;
+            results.appendChild(div);
+        }
+        
+        // Auto-run basic test
+        document.addEventListener('DOMContentLoaded', function() {
+            showResult('🔍 Browser test started...', 'success');
+            
+            // Test CSS Variables support
+            if (CSS && CSS.supports && CSS.supports('(--test: 0)')) {
+                showResult('✅ Browser supports CSS Variables', 'success');
+            } else {
+                showResult('❌ Browser does NOT support CSS Variables', 'error');
+            }
+            
+            // Test other modern CSS features
+            if (CSS && CSS.supports && CSS.supports('display', 'grid')) {
+                showResult('✅ Browser supports CSS Grid', 'success');
+            } else {
+                showResult('❌ Browser does NOT support CSS Grid', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

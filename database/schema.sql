@@ -1,4 +1,6 @@
--- YPT Study App Database Schem-- Create users table
+-- YPT Study App Database Schema
+
+-- Create users table
 CREATE TABLE IF NOT EXISTS `users` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `first_name` varchar(50) NOT NULL,
@@ -19,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `users` (
     KEY `idx_email` (`email`),
     KEY `idx_status` (`status`),
     KEY `idx_oauth` (`oauth_provider`, `oauth_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; in your cPanel MySQL database
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Create study_sessions table
 CREATE TABLE IF NOT EXISTS `study_sessions` (

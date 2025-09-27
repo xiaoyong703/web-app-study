@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-// Database configuration
-require_once 'config/database.php';
-require_once 'includes/functions.php';
-
 // Check if user is authenticated (PHP compatible version)
 $isAuthenticated = false;
 if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
@@ -17,6 +13,10 @@ if (!$isAuthenticated) {
     include 'home.php';
     exit();
 }
+
+// Only load database and functions for authenticated users
+require_once 'config/database.php';
+require_once 'includes/functions.php';
 
 // If authenticated, show dashboard
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';

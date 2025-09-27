@@ -36,7 +36,7 @@ if (isset($_GET['registered'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - YPT Study</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .auth-container {
@@ -376,7 +376,7 @@ if (isset($_GET['registered'])) {
                 </div>
             <?php endif; ?>
 
-            <form class="auth-form" id="login-form" action="api/auth/login.php" method="POST">
+            <form class="auth-form" id="login-form" action="../api/auth/login.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <div class="input-group">
@@ -413,11 +413,11 @@ if (isset($_GET['registered'])) {
             </div>
 
             <div class="social-login">
-                <a href="api/auth/google-login.php" class="social-btn">
+                <a href="../api/auth/google-login.php" class="social-btn">
                     <i class="fab fa-google"></i>
                     Google
                 </a>
-                <a href="api/auth/github-login.php" class="social-btn">
+                <a href="../api/auth/github-login.php" class="social-btn">
                     <i class="fab fa-github"></i>
                     GitHub
                 </a>

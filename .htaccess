@@ -1,6 +1,16 @@
 # YPT Study App - Apache Configuration
 # This file provides basic security and performance optimizations
 
+# MIME Types - Ensure proper content types are served
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType application/json .json
+    AddType image/svg+xml .svg
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+</IfModule>
+
 # Security Headers
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options nosniff

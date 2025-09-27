@@ -305,23 +305,36 @@
             </ul>
             
             <div class="auth-buttons">
-                <a href="pages/login.php" class="btn btn-outline" onclick="console.log('Sign In clicked'); return true;">Sign In</a>
-                <a href="pages/register.php" class="btn btn-primary" onclick="console.log('Get Started clicked'); return true;">Get Started</a>
+                <?php if ($isAuthenticated && $user): ?>
+                    <span style="color: #5f6368; margin-right: 1rem;">Welcome, <?php echo htmlspecialchars($user['first_name']); ?>!</span>
+                    <a href="index.php?page=dashboard" class="btn btn-primary">Go to Dashboard</a>
+                    <a href="api/auth/logout.php" class="btn btn-outline">Sign Out</a>
+                <?php else: ?>
+                    <a href="pages/login.php" class="btn btn-outline">Sign In</a>
+                    <a href="pages/register.php" class="btn btn-primary">Get Started</a>
+                <?php endif; ?>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Where Learning and Excellence Come Together</h1>
-            <p>YPT Study helps students create engaging study experiences they can personalize, manage, and measure. Empowering learners to enhance their academic impact and prepare for future success.</p>
+            <section class="hero">
+            <div class="hero-content">
+                <?php if (isset($_GET['welcome']) && $isAuthenticated && $user): ?>
+                    <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center;">
+                        <h3 style="margin: 0 0 0.5rem 0;">🎉 Welcome to YPT Study App!</h3>
+                        <p style="margin: 0;">You're all set, <?php echo htmlspecialchars($user['first_name']); ?>! Ready to start your learning journey?</p>
+                    </div>
+                <?php endif; ?>
+                
+                <h1><?php echo $isAuthenticated && $user ? "Welcome back, " . htmlspecialchars($user['first_name']) . "!" : "Master Your Studies with YPT"; ?></h1>
+                <p><?php echo $isAuthenticated && $user ? "Ready to continue your learning journey? Access your personalized dashboard below." : "Join thousands of students achieving academic excellence through structured learning, practice tests, and personalized study plans."; ?></p>
             
             <div class="hero-buttons">
-                <a href="pages/register.php" class="btn btn-primary btn-large" onclick="console.log('Hero Register clicked'); return true;">
+                <a href="pages/register.php" class="btn btn-primary btn-large">
                     <i class="fas fa-rocket"></i> Start Learning Free
                 </a>
-                <a href="pages/login.php" class="btn btn-outline btn-large" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);" onclick="console.log('Hero Sign In clicked'); return true;">
+                <a href="pages/login.php" class="btn btn-outline btn-large" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">
                     <i class="fas fa-sign-in-alt"></i> Sign In to Continue
                 </a>
             </div>

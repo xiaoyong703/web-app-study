@@ -3,13 +3,33 @@ session_start();
 
 // Check if user is authenticated (PHP compatible version)
 $isAuthenticated = false;
+$user = null;
 if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
     // Check if it's not a guest session
     $isAuthenticated = (strpos($_SESSION['user_id'], 'guest_') !== 0);
+    if ($isAuthenticated) {
+        // Load user data for authenticated users
+        require_once 'config/database.php';
+        try {
+            $stmt = $pdo->prepare("SELECT first_name, last_name, email FROM users WHERE id = ?");
+            $stmt->execute([$_SESSION['user_id']]);
+            $user = $stmt->fetch();
+        } catch(Exception $e) {
+            // If database error, still show landing page
+        }
+    }
 }
 
-// If not authenticated, show landing page
-if (!$isAuthenticated) {
+// Check if user wants to access dashboard specifically
+if ($isAuthenticated && isset($_GET['page']) && $_GET['page'] === 'dashboard') {
+    // Load database and functions for dashboard
+    if (!isset($pdo)) {
+        require_once 'config/database.php';
+    }
+    require_once 'includes/functions.php';
+    // Continue to dashboard code below
+} else {
+    // Show landing page (authenticated or not)
     include 'home.php';
     exit();
 }

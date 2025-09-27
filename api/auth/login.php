@@ -55,7 +55,7 @@ try {
     $stmt = $pdo->prepare("UPDATE users SET last_login = NOW() WHERE id = ?");
     $stmt->execute([$user['id']]);
 
-    header('Location: ../../index.php?page=dashboard');
+    header('Location: ../../index.php');
     exit;
 
 } catch (Exception $e) {

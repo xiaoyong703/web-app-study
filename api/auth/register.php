@@ -82,7 +82,12 @@ try {
         error_log("Welcome email needed for: $email");
     }
 
-    header('Location: ../../pages/login.php?registered=1');
+    // Set session to log them in automatically
+    $_SESSION['user_id'] = $userId;
+    $_SESSION['user_email'] = $email;
+    $_SESSION['user_name'] = $firstName . ' ' . $lastName;
+
+    header('Location: ../../index.php');
     exit;
 
 } catch (Exception $e) {

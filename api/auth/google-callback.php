@@ -107,7 +107,7 @@ try {
     // Clean up session
     unset($_SESSION['oauth_state']);
 
-    header('Location: ../../index.php?page=dashboard&welcome=1');
+    header('Location: ../../index.php?welcome=1');
     exit;
 
 } catch (Exception $e) {

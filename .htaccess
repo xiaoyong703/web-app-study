@@ -1,6 +1,27 @@
 # YPT Study App - Apache Configuration
 # This file provides basic security and performance optimizations
 
+# IMPORTANT: Allow direct access to static files FIRST
+<FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
+    # Allow direct access to static files
+    <IfModule mod_rewrite.c>
+        RewriteEngine Off
+    </IfModule>
+    # Ensure proper MIME types
+    <IfModule mod_mime.c>
+        AddType text/css .css
+        AddType application/javascript .js
+        AddType application/json .json
+        AddType image/svg+xml .svg
+        AddType application/font-woff .woff
+        AddType application/font-woff2 .woff2
+        AddType image/png .png
+        AddType image/jpeg .jpg .jpeg
+        AddType image/gif .gif
+        AddType image/x-icon .ico
+    </IfModule>
+</FilesMatch>
+
 # MIME Types - Ensure proper content types are served
 <IfModule mod_mime.c>
     AddType text/css .css
@@ -88,13 +109,14 @@
     RewriteRule ^ %1 [R=301,L]
 </IfModule>
 
-# Prevent hotlinking (optional)
+# Prevent hotlinking (optional) - FIXED to allow your domain
 <IfModule mod_rewrite.c>
     RewriteEngine on
     RewriteCond %{HTTP_REFERER} !^$
-    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yourdomain.com [NC]
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?xynotoky\.online [NC]
     RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?google.com [NC]
-    RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [NC,F,L]
+    # Only block images, NOT CSS/JS files
+    RewriteRule \.(jpg|jpeg|png|gif)$ - [NC,F,L]
 </IfModule>
 
 # Limit file upload size (adjust as needed)

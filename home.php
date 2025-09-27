@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YPT Study - Where Learning Excellence Begins</title>
+    <title>YPT Study - Next-Gen Learning Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -13,60 +13,144 @@
         }
 
         body {
-            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Header */
+        /* Futuristic Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #00f5ff, #0099ff);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Glassmorphism Header */
         .header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .navbar {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 2rem;
-            height: 70px;
-        }
-
-        .logo {
-            display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a73e8;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .logo i {
-            font-size: 2rem;
+        .nav-brand h2 {
+            background: linear-gradient(45deg, #00f5ff, #0099ff, #ff0080);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite;
+            font-weight: 800;
+            font-size: 1.8rem;
         }
 
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
-        .nav-link {
+        /* Futuristic Buttons */
+        .btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 30px;
             text-decoration: none;
-            color: #5f6368;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .nav-link:hover {
-            color: #1a73e8;
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #00f5ff;
+            border: 2px solid #00f5ff;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: #00f5ff;
+            color: #0a0a0a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.4);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff0080, #7928ca);
+            color: white;
+            border: 2px solid transparent;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 0, 128, 0.4);
         }
 
         .auth-buttons {
@@ -75,205 +159,216 @@
             align-items: center;
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 24px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-outline {
-            color: #1a73e8;
-            border: 1px solid #dadce0;
-            background: white;
-        }
-
-        .btn-outline:hover {
-            background: #f8f9fa;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .btn-primary {
-            background: #1a73e8;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1557b0;
-            box-shadow: 0 4px 12px rgba(26,115,232,0.3);
-        }
-
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 150px 2rem 100px;
-            margin-top: 70px;
+            padding: 0 2rem;
+            position: relative;
         }
 
         .hero-content {
             max-width: 800px;
-            margin: 0 auto;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            background: linear-gradient(45deg, #ffffff, #00f5ff, #ff0080);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease infinite;
+            line-height: 1.1;
         }
 
         .hero p {
             font-size: 1.3rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            line-height: 1.6;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
-        .btn-large {
-            padding: 1rem 2rem;
+        .btn-hero {
+            padding: 18px 40px;
             font-size: 1.1rem;
-            border-radius: 30px;
+            border-radius: 50px;
+            min-width: 200px;
+        }
+
+        /* Welcome Message */
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 128, 0.1));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .welcome-banner h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.8rem;
+            color: #00f5ff;
         }
 
         /* Features Section */
         .features {
-            padding: 100px 2rem;
-            background: #f8f9fa;
-        }
-
-        .features-container {
-            max-width: 1200px;
+            padding: 8rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .features h2 {
-            font-size: 2.5rem;
-            color: #202124;
-            margin-bottom: 3rem;
-            font-weight: 600;
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #ffffff, #00f5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 245, 255, 0.1), transparent);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
         }
 
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
+            background: linear-gradient(45deg, #00f5ff, #ff0080);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
             font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card h3 {
             font-size: 1.5rem;
-            color: #202124;
             margin-bottom: 1rem;
-            font-weight: 600;
+            color: #ffffff;
+            position: relative;
+            z-index: 2;
         }
 
         .feature-card p {
-            color: #5f6368;
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
         }
 
         /* CTA Section */
         .cta {
-            background: linear-gradient(135deg, #1a73e8, #4285f4);
-            color: white;
-            padding: 80px 2rem;
+            padding: 6rem 2rem;
             text-align: center;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(255, 0, 128, 0.1));
         }
 
         .cta h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            font-weight: 600;
+            color: #ffffff;
         }
 
         .cta p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         /* Footer */
         .footer {
-            background: #202124;
-            color: white;
-            padding: 50px 2rem 30px;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem 2rem;
             text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        .footer-link {
-            color: #bdc1c6;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-            color: white;
-        }
-
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
+            .navbar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            .btn {
+                width: 100%;
             }
 
             .hero-buttons {
@@ -281,33 +376,51 @@
                 align-items: center;
             }
 
+            .btn-hero {
+                width: 100%;
+                max-width: 300px;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00f5ff, #ff0080);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff0080, #00f5ff);
         }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="grid-overlay"></div>
+    </div>
+
     <!-- Header -->
     <header class="header">
-        <nav class="nav-container">
-            <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <span>YPT Study</span>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>⚡ YPT Study</h2>
             </div>
-            
-            <ul class="nav-menu">
-                <li><a href="#features" class="nav-link">Features</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#pricing" class="nav-link">Pricing</a></li>
-                <li><a href="#support" class="nav-link">Support</a></li>
-            </ul>
-            
             <div class="auth-buttons">
                 <?php if ($isAuthenticated && $user): ?>
-                    <span style="color: #5f6368; margin-right: 1rem;">Welcome, <?php echo htmlspecialchars($user['first_name']); ?>!</span>
-                    <a href="index.php?page=dashboard" class="btn btn-primary">Go to Dashboard</a>
+                    <span style="color: #00f5ff; margin-right: 1rem; font-weight: 500;">Welcome, <?php echo htmlspecialchars($user['first_name']); ?>!</span>
+                    <a href="index.php?page=dashboard" class="btn btn-primary">Launch Dashboard</a>
                     <a href="api/auth/logout.php" class="btn btn-outline">Sign Out</a>
                 <?php else: ?>
                     <a href="pages/login.php" class="btn btn-outline">Sign In</a>
@@ -318,82 +431,88 @@
     </header>
 
     <!-- Hero Section -->
-            <section class="hero">
-            <div class="hero-content">
-                <?php if (isset($_GET['welcome']) && $isAuthenticated && $user): ?>
-                    <div style="background: linear-gradient(135deg, #4CAF50, #45a049); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; text-align: center;">
-                        <h3 style="margin: 0 0 0.5rem 0;">🎉 Welcome to YPT Study App!</h3>
-                        <p style="margin: 0;">You're all set, <?php echo htmlspecialchars($user['first_name']); ?>! Ready to start your learning journey?</p>
-                    </div>
-                <?php endif; ?>
-                
-                <h1><?php echo $isAuthenticated && $user ? "Welcome back, " . htmlspecialchars($user['first_name']) . "!" : "Master Your Studies with YPT"; ?></h1>
-                <p><?php echo $isAuthenticated && $user ? "Ready to continue your learning journey? Access your personalized dashboard below." : "Join thousands of students achieving academic excellence through structured learning, practice tests, and personalized study plans."; ?></p>
+    <section class="hero">
+        <div class="hero-content">
+            <?php if (isset($_GET['welcome']) && $isAuthenticated && $user): ?>
+                <div class="welcome-banner">
+                    <h3>🚀 Welcome to the Future of Learning!</h3>
+                    <p>You're all set, <?php echo htmlspecialchars($user['first_name']); ?>! Ready to unlock your potential with next-gen study tools?</p>
+                </div>
+            <?php endif; ?>
+            
+            <h1><?php echo $isAuthenticated && $user ? "Welcome Back, " . htmlspecialchars($user['first_name']) . "!" : "The Future of Learning is Here"; ?></h1>
+            <p><?php echo $isAuthenticated && $user ? "Your personalized AI-powered study experience awaits. Access cutting-edge tools and analytics." : "Experience next-generation learning with AI-powered study tools, immersive environments, and personalized analytics."; ?></p>
             
             <div class="hero-buttons">
-                <a href="pages/register.php" class="btn btn-primary btn-large">
-                    <i class="fas fa-rocket"></i> Start Learning Free
-                </a>
-                <a href="pages/login.php" class="btn btn-outline btn-large" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">
-                    <i class="fas fa-sign-in-alt"></i> Sign In to Continue
-                </a>
+                <?php if ($isAuthenticated && $user): ?>
+                    <a href="index.php?page=dashboard" class="btn btn-primary btn-hero">
+                        <i class="fas fa-rocket"></i> Launch Dashboard
+                    </a>
+                    <a href="#features" class="btn btn-outline btn-hero">
+                        <i class="fas fa-star"></i> Explore Features
+                    </a>
+                <?php else: ?>
+                    <a href="pages/register.php" class="btn btn-primary btn-hero">
+                        <i class="fas fa-rocket"></i> Start Your Journey
+                    </a>
+                    <a href="pages/login.php" class="btn btn-outline btn-hero">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <div class="features-container">
-            <h2>Introducing Powerful Study Tools in YPT Study</h2>
+        <h2>Next-Gen Learning Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI-Powered Analytics</h3>
+                <p>Advanced machine learning algorithms analyze your study patterns and provide personalized insights to optimize your learning efficiency.</p>
+            </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Smart Study Plans</h3>
-                    <p>AI-powered study schedules that adapt to your learning pace and optimize retention using spaced repetition techniques.</p>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-vr-cardboard"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Study Groups</h3>
-                    <p>Collaborate with peers, share resources, and engage in group study sessions that enhance learning through social interaction.</p>
+                <h3>Immersive Study Environment</h3>
+                <p>Focus-enhancing virtual environments with binaural audio, ambient lighting effects, and distraction-free interfaces.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Gamification</h3>
-                    <p>Earn points, unlock achievements, and maintain study streaks that make learning engaging and rewarding.</p>
+                <h3>Real-Time Progress Tracking</h3>
+                <p>Live performance metrics, streak tracking, and achievement systems that gamify your learning experience.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-focus"></i>
-                    </div>
-                    <h3>Focus Mode</h3>
-                    <p>Distraction-free study environment with Pomodoro timers and productivity tracking to maximize concentration.</p>
+                <h3>Collaborative Learning</h3>
+                <p>Connect with study groups, share notes, participate in real-time discussions, and learn from peers globally.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Progress Analytics</h3>
-                    <p>Comprehensive insights into your study patterns, performance trends, and areas for improvement.</p>
+                <h3>Smart Flashcards</h3>
+                <p>AI-generated flashcards with spaced repetition algorithms that adapt to your memory patterns and learning speed.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Daily Reviews</h3>
-                    <p>Personalized daily study reviews that reinforce learning and ensure long-term knowledge retention.</p>
-                </div>
+                <h3>Achievement System</h3>
+                <p>Unlock badges, level up your profile, and compete in leaderboards while building consistent study habits.</p>
             </div>
         </div>
     </section>
@@ -401,26 +520,56 @@
     <!-- CTA Section -->
     <section class="cta">
         <h2>Ready to Transform Your Learning?</h2>
-        <p>Join thousands of students who have revolutionized their study experience with YPT Study.</p>
-        <a href="pages/register.php" class="btn btn-large" style="background: white; color: #1a73e8;">
-            <i class="fas fa-rocket"></i> Get Started Today
-        </a>
+        <p>Join thousands of students already experiencing the future of education</p>
+        <?php if (!$isAuthenticated || !$user): ?>
+            <a href="pages/register.php" class="btn btn-primary btn-hero">
+                <i class="fas fa-rocket"></i> Get Started Free
+            </a>
+        <?php endif; ?>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-links">
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms of Service</a>
-                <a href="#" class="footer-link">Contact Us</a>
-                <a href="#" class="footer-link">Help Center</a>
-            </div>
-            <p>&copy; 2025 YPT Study. All rights reserved.</p>
-        </div>
+        <p>&copy; 2025 YPT Study App. Powered by next-generation learning technology.</p>
     </footer>
 
     <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            
+            document.querySelector('.bg-animation').appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 10000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 500);
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.05)';
+            }
+        });
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -428,22 +577,34 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth'
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = 'white';
-                header.style.backdropFilter = 'none';
-            }
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
         });
     </script>
 </body>

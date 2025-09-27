@@ -3,7 +3,7 @@ session_start();
 
 // Redirect if already logged in
 if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -37,7 +37,7 @@ if (isset($_GET['error'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - YPT Study</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .auth-container {
@@ -418,7 +418,7 @@ if (isset($_GET['error'])) {
                 </div>
             <?php endif; ?>
 
-            <form class="auth-form" id="register-form" action="api/auth/register.php" method="POST">
+            <form class="auth-form" id="register-form" action="../api/auth/register.php" method="POST">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="first_name">First Name *</label>

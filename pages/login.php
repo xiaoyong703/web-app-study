@@ -1,10 +1,13 @@
 <?php
 session_start();
 
-// Redirect if already logged in
-if (isset($_SESSION['user_id'])) {
-    header('Location: ../index.php');
-    exit();
+// Redirect if already logged in (but not if guest session)
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    // Check if it's not a guest session
+    if (strpos($_SESSION['user_id'], 'guest_') !== 0) {
+        header('Location: ../index.php');
+        exit();
+    }
 }
 
 $error = '';

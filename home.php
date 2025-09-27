@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YPT Study - Where Learning Excellence Begins</title>
-    <!-- Debug info -->
-    <script>
-        console.log('Home page loaded');
-        console.log('Authentication status from PHP:', <?php echo json_encode($isAuthenticated ?? false); ?>);
-        console.log('User data from PHP:', <?php echo json_encode($user ?? null); ?>);
-    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -316,8 +310,8 @@
                     <a href="index.php?page=dashboard" class="btn btn-primary">Go to Dashboard</a>
                     <a href="api/auth/logout.php" class="btn btn-outline">Sign Out</a>
                 <?php else: ?>
-                    <a href="pages/login.php" class="btn btn-outline" onclick="console.log('Sign In clicked - navigating to:', this.href); return true;">Sign In</a>
-                    <a href="pages/register.php" class="btn btn-primary" onclick="console.log('Register clicked - navigating to:', this.href); return true;">Get Started</a>
+                    <a href="pages/login.php" class="btn btn-outline">Sign In</a>
+                    <a href="pages/register.php" class="btn btn-primary">Get Started</a>
                 <?php endif; ?>
             </div>
         </nav>

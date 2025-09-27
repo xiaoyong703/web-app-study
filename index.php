@@ -5,12 +5,16 @@ session_start();
 require_once 'config/database.php';
 require_once 'includes/functions.php';
 
-// Simple authentication check - redirect to login if not logged in
-if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
-    header('Location: pages/login.php');
+// Check if user is authenticated (PHP compatible version)
+$isAuthenticated = isset($_SESSION['user_id']) && !empty($_SESSION['user_id']) && strpos($_SESSION['user_id'], 'guest_') === false;
+
+// If not authenticated, show landing page
+if (!$isAuthenticated) {
+    include 'home.php';
     exit();
 }
 
+// If authenticated, show dashboard
 $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 ?>
 <!DOCTYPE html>

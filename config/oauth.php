@@ -1,7 +1,7 @@
 <?php
 // Google OAuth configuration
-define('GOOGLE_CLIENT_ID', 'your_google_client_id_here');
-define('GOOGLE_CLIENT_SECRET', 'your_google_client_secret_here');
+define('GOOGLE_CLIENT_ID', '707730920463-tf7svsd22kt8jh5jjsq9llp4ti1lchd9.apps.googleusercontent.com');
+define('GOOGLE_CLIENT_SECRET', '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');
 define('GOOGLE_REDIRECT_URI', 'https://xynotoky.online/api/auth/google-callback.php');
 
 // GitHub OAuth configuration (optional)

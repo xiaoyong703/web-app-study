@@ -6,7 +6,11 @@ require_once 'config/database.php';
 require_once 'includes/functions.php';
 
 // Check if user is authenticated (PHP compatible version)
-$isAuthenticated = isset($_SESSION['user_id']) && !empty($_SESSION['user_id']) && strpos($_SESSION['user_id'], 'guest_') === false;
+$isAuthenticated = false;
+if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
+    // Check if it's not a guest session
+    $isAuthenticated = (strpos($_SESSION['user_id'], 'guest_') !== 0);
+}
 
 // If not authenticated, show landing page
 if (!$isAuthenticated) {

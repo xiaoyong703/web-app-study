@@ -305,8 +305,8 @@
             </ul>
             
             <div class="auth-buttons">
-                <a href="pages/login.php" class="btn btn-outline">Sign In</a>
-                <a href="pages/register.php" class="btn btn-primary">Get Started</a>
+                <a href="pages/login.php" class="btn btn-outline" onclick="console.log('Sign In clicked'); return true;">Sign In</a>
+                <a href="pages/register.php" class="btn btn-primary" onclick="console.log('Get Started clicked'); return true;">Get Started</a>
             </div>
         </nav>
     </header>
@@ -318,10 +318,10 @@
             <p>YPT Study helps students create engaging study experiences they can personalize, manage, and measure. Empowering learners to enhance their academic impact and prepare for future success.</p>
             
             <div class="hero-buttons">
-                <a href="pages/register.php" class="btn btn-primary btn-large">
+                <a href="pages/register.php" class="btn btn-primary btn-large" onclick="console.log('Hero Register clicked'); return true;">
                     <i class="fas fa-rocket"></i> Start Learning Free
                 </a>
-                <a href="pages/login.php" class="btn btn-outline btn-large" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">
+                <a href="pages/login.php" class="btn btn-outline btn-large" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);" onclick="console.log('Hero Sign In clicked'); return true;">
                     <i class="fas fa-sign-in-alt"></i> Sign In to Continue
                 </a>
             </div>
@@ -412,9 +412,12 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 

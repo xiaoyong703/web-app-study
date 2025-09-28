@@ -19,84 +19,18 @@
             line-height: 1.6;
         }
 
-        /* Sidebar Navigation */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
-            background: #ffffff;
-            border-right: 1px solid #e2e8f0;
-            padding: 2rem 0;
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .sidebar-header {
-            padding: 0 2rem 2rem;
-            border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-header h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
+        /* Brand Logo */
+        .brand {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-        }
-
-        .sidebar-nav {
-            padding: 0 1rem;
-        }
-
-        .nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .nav-section-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            color: #64748b;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            margin-bottom: 0.25rem;
-            transition: all 0.2s ease;
-            font-weight: 500;
-        }
-
-        .nav-item:hover {
-            background: #f1f5f9;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: #1e293b;
-        }
-
-        .nav-item.active {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .nav-item i {
-            width: 20px;
-            margin-right: 0.75rem;
-            font-size: 1rem;
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 280px;
             min-height: 100vh;
             background: #f8fafc;
         }
@@ -107,8 +41,23 @@
             border-bottom: 1px solid #e2e8f0;
             padding: 1rem 2rem;
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .header-title h1 {
@@ -542,26 +491,21 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
+            .header-left {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
 
-            .sidebar.open {
-                transform: translateX(0);
+            .header-nav {
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
 
-            .main-content {
-                margin-left: 0;
-            }
-
-            .mobile-menu {
-                display: block;
-                background: none;
-                border: none;
-                font-size: 1.5rem;
-                color: #64748b;
-                cursor: pointer;
+            .top-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
 
             .stats-grid {
@@ -599,113 +543,27 @@
             }
         }
 
-        @media (min-width: 769px) {
-            .mobile-menu {
-                display: none;
-            }
-        }
+
     </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h2><i class="fas fa-graduation-cap"></i> YPT Study</h2>
-        </div>
-        
-        <div class="sidebar-nav">
-            <div class="nav-section">
-                <div class="nav-section-title">Main</div>
-                <a href="#" class="nav-item active">
-                    <i class="fas fa-home"></i>
-                    Dashboard
-                </a>
-                <a href="index.php?page=dashboard" class="nav-item">
-                    <i class="fas fa-chart-line"></i>
-                    Analytics
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-book"></i>
-                    Study Sessions
-                </a>
-            </div>
-            
-            <div class="nav-section">
-                <div class="nav-section-title">Learning</div>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-brain"></i>
-                    Flashcards
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-question-circle"></i>
-                    Quizzes
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-sticky-note"></i>
-                    Notes
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-users"></i>
-                    Study Groups
-                </a>
-            </div>
-            
-            <div class="nav-section">
-                <div class="nav-section-title">Tools</div>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-clock"></i>
-                    Focus Timer
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-trophy"></i>
-                    Achievements
-                </a>
-                <a href="#" class="nav-item">
-                    <i class="fas fa-calendar"></i>
-                    Daily Review
-                </a>
-            </div>
-            
-            <div class="nav-section">
-                <div class="nav-section-title">Account</div>
-                <?php if ($isAuthenticated && $user): ?>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user"></i>
-                        Profile
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-cog"></i>
-                        Settings
-                    </a>
-                    <a href="api/auth/logout.php" class="nav-item">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Sign Out
-                    </a>
-                <?php else: ?>
-                    <a href="pages/login.php" class="nav-item">
-                        <i class="fas fa-sign-in-alt"></i>
-                        Sign In
-                    </a>
-                    <a href="pages/register.php" class="nav-item">
-                        <i class="fas fa-user-plus"></i>
-                        Register
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </nav>
-
     <!-- Main Content -->
     <main class="main-content">
         <!-- Top Header -->
         <header class="top-header">
-            <button class="mobile-menu" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <div class="header-title">
-                <h1><?php echo $isAuthenticated && $user ? 'Welcome back, ' . htmlspecialchars($user['first_name']) . '!' : 'Welcome to YPT Study'; ?></h1>
-                <p><?php echo $isAuthenticated && $user ? 'Ready to continue your learning journey?' : 'Your personalized learning experience awaits'; ?></p>
+            <div class="header-left">
+                <div class="brand">
+                    <i class="fas fa-graduation-cap"></i> YPT Study
+                </div>
+                
+                <?php if ($isAuthenticated && $user): ?>
+                <div class="header-nav">
+                    <a href="index.php?page=dashboard" class="btn btn-primary">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <?php endif; ?>
             </div>
             
             <div class="header-actions">
@@ -716,6 +574,19 @@
                             <?php echo strtoupper(substr($user['first_name'], 0, 1)); ?>
                         </div>
                     </div>
+                    <a href="api/auth/logout.php" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sign Out
+                    </a>
+                <?php else: ?>
+                    <a href="pages/login.php" class="btn btn-outline">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </a>
+                    <a href="pages/register.php" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Get Started
+                    </a>
                 <?php endif; ?>
             </div>
         </header>
@@ -728,46 +599,16 @@
                     <div class="welcome-content">
                         <h2>🎉 Welcome to YPT Study!</h2>
                         <p>You're all set, <?php echo htmlspecialchars($user['first_name']); ?>! Let's start your personalized learning journey.</p>
-                        <div class="welcome-actions">
-                            <a href="index.php?page=dashboard" class="btn btn-secondary">
-                                <i class="fas fa-rocket"></i>
-                                Launch Dashboard
-                            </a>
-                            <a href="#quick-actions" class="btn btn-secondary">
-                                <i class="fas fa-compass"></i>
-                                Explore Features
-                            </a>
-                        </div>
                     </div>
                 <?php elseif ($isAuthenticated && $user): ?>
                     <div class="welcome-content">
-                        <h2>Ready to Study?</h2>
+                        <h2>Ready to Study, <?php echo htmlspecialchars($user['first_name']); ?>?</h2>
                         <p>Continue where you left off or start a new study session. Your progress is waiting!</p>
-                        <div class="welcome-actions">
-                            <a href="index.php?page=dashboard" class="btn btn-secondary">
-                                <i class="fas fa-chart-line"></i>
-                                View Dashboard
-                            </a>
-                            <a href="#" class="btn btn-secondary">
-                                <i class="fas fa-play"></i>
-                                Start Session
-                            </a>
-                        </div>
                     </div>
                 <?php else: ?>
                     <div class="welcome-content">
                         <h2>Transform Your Learning</h2>
                         <p>Join thousands of students who are achieving their academic goals with our personalized study platform.</p>
-                        <div class="welcome-actions">
-                            <a href="pages/register.php" class="btn btn-secondary">
-                                <i class="fas fa-rocket"></i>
-                                Get Started Free
-                            </a>
-                            <a href="pages/login.php" class="btn btn-secondary">
-                                <i class="fas fa-sign-in-alt"></i>
-                                Sign In
-                            </a>
-                        </div>
                     </div>
                 <?php endif; ?>
             </section>
@@ -991,29 +832,17 @@
     </main>
 
     <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-        }
-
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            
-            if (window.innerWidth <= 768 && 
-                !sidebar.contains(event.target) && 
-                !mobileMenu.contains(event.target)) {
-                sidebar.classList.remove('open');
-            }
-        });
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const sidebar = document.getElementById('sidebar');
-            if (window.innerWidth > 768) {
-                sidebar.classList.remove('open');
-            }
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>

@@ -22,6 +22,18 @@ if (isset($_GET['error'])) {
         case 'inactive':
             $error = 'Your account is inactive. Please contact support.';
             break;
+        case 'database':
+            $error = 'Database connection error. Please try again later.';
+            break;
+        case 'method':
+            $error = 'Invalid request method.';
+            break;
+        case 'system':
+            $error = 'System error. Please try again later.';
+            break;
+        case 'oauth_failed':
+            $error = 'Social login failed. Please try again.';
+            break;
         default:
             $error = 'An error occurred. Please try again.';
     }

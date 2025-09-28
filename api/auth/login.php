@@ -1,12 +1,23 @@
 <?php
 session_start();
-require_once '../../config/database.php';
 
-header('Content-Type: application/json');
+// Debug logging
+error_log("Login API called - Method: " . $_SERVER['REQUEST_METHOD'] . " - Time: " . date('Y-m-d H:i:s'));
+error_log("POST data: " . json_encode($_POST));
 
+// Don't set JSON header since we're doing redirects
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
+    error_log("Login error: Invalid request method");
+    header('Location: ../../pages/login.php?error=method');
+    exit;
+}
+
+// Include database config with error handling
+try {
+    require_once '../../config/database.php';
+} catch (Exception $e) {
+    error_log('Database connection error: ' . $e->getMessage());
+    header('Location: ../../pages/login.php?error=database');
     exit;
 }
 
@@ -14,27 +25,42 @@ $email = trim($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $remember = isset($_POST['remember']);
 
+error_log("Login attempt for email: " . $email);
+
 // Validation
 if (empty($email) || empty($password)) {
+    error_log("Login error: Empty email or password");
     header('Location: ../../pages/login.php?error=required');
     exit;
 }
 
 try {
     // Check user credentials
+    error_log("Querying database for user: " . $email);
     $stmt = $pdo->prepare("SELECT id, email, password, first_name, last_name, status FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
-    if (!$user || !password_verify($password, $user['password'])) {
+    if (!$user) {
+        error_log("Login error: User not found for email: " . $email);
+        header('Location: ../../pages/login.php?error=invalid');
+        exit;
+    }
+
+    error_log("User found, verifying password for user ID: " . $user['id']);
+    if (!password_verify($password, $user['password'])) {
+        error_log("Login error: Invalid password for user: " . $email);
         header('Location: ../../pages/login.php?error=invalid');
         exit;
     }
 
     if ($user['status'] !== 'active') {
+        error_log("Login error: Inactive user: " . $email . " (status: " . $user['status'] . ")");
         header('Location: ../../pages/login.php?error=inactive');
         exit;
     }
+
+    error_log("Login successful for user: " . $email);
 
     // Set session
     $_SESSION['user_id'] = $user['id'];

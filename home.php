@@ -313,6 +313,167 @@
         .stat-change.positive { color: #16a34a; }
         .stat-change.negative { color: #dc2626; }
 
+        /* Features Showcase (Before Sign In) */
+        .features-showcase {
+            margin-bottom: 3rem;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .features-header p {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefit {
+            font-size: 0.875rem;
+            color: #16a34a;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            min-width: 180px;
+        }
+
+        .cta-buttons .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        .cta-buttons .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+        }
+
+        .cta-buttons .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
         /* Quick Actions */
         .quick-actions {
             background: white;
@@ -407,8 +568,22 @@
                 grid-template-columns: 1fr;
             }
 
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
             .actions-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
             }
 
             .welcome-section {
@@ -597,8 +772,139 @@
                 <?php endif; ?>
             </section>
 
-            <!-- Stats Grid -->
-            <?php if ($isAuthenticated && $user): ?>
+            <!-- Features Showcase (Before Sign In) -->
+            <?php if (!$isAuthenticated || !$user): ?>
+            <section class="features-showcase">
+                <div class="features-header">
+                    <h2>Powerful Study Features</h2>
+                    <p>Everything you need to excel in your studies, all in one platform</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon blue">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Smart Flashcards</h3>
+                        <p>AI-powered spaced repetition system that adapts to your learning pace. Create, study, and master any subject with intelligent review scheduling.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Spaced Repetition Algorithm</span>
+                            <span class="benefit">• Progress Tracking</span>
+                            <span class="benefit">• Custom Categories</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon green">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3>Interactive Quizzes</h3>
+                        <p>Test your knowledge with customizable quizzes. Multiple choice, true/false, and open-ended questions with instant feedback and explanations.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Multiple Question Types</span>
+                            <span class="benefit">• Instant Feedback</span>
+                            <span class="benefit">• Performance Analytics</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon purple">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Focus Timer</h3>
+                        <p>Boost productivity with Pomodoro technique sessions. Track study time, set goals, and maintain focus with ambient sounds and notifications.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Pomodoro Technique</span>
+                            <span class="benefit">• Ambient Sounds</span>
+                            <span class="benefit">• Session Analytics</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon orange">
+                            <i class="fas fa-sticky-note"></i>
+                        </div>
+                        <h3>Smart Notes</h3>
+                        <p>Organize your thoughts with rich-text notes. Add images, links, and formatting. Search across all notes and sync across devices.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Rich Text Editor</span>
+                            <span class="benefit">• File Attachments</span>
+                            <span class="benefit">• Advanced Search</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Study Groups</h3>
+                        <p>Collaborate with classmates and study partners. Share resources, discuss topics, and learn together in real-time chat environments.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Real-time Chat</span>
+                            <span class="benefit">• Resource Sharing</span>
+                            <span class="benefit">• Group Progress</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Progress Analytics</h3>
+                        <p>Detailed insights into your learning patterns. Track study time, identify strengths and weaknesses, and optimize your study strategy.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Performance Insights</span>
+                            <span class="benefit">• Study Patterns</span>
+                            <span class="benefit">• Goal Tracking</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon purple">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Achievements</h3>
+                        <p>Stay motivated with badges, streaks, and leaderboards. Unlock achievements as you reach study milestones and build consistent habits.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Badge System</span>
+                            <span class="benefit">• Study Streaks</span>
+                            <span class="benefit">• Leaderboards</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon orange">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <h3>Daily Review</h3>
+                        <p>Reflect on your daily progress with guided review sessions. Set goals, track completion, and build sustainable study habits.</p>
+                        <div class="feature-benefits">
+                            <span class="benefit">• Daily Goals</span>
+                            <span class="benefit">• Progress Reflection</span>
+                            <span class="benefit">• Habit Building</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cta-section">
+                    <h3>Ready to Transform Your Learning?</h3>
+                    <p>Join thousands of students already achieving their academic goals</p>
+                    <div class="cta-buttons">
+                        <a href="pages/register.php" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Start Free Today
+                        </a>
+                        <a href="pages/login.php" class="btn btn-outline">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <?php else: ?>
+            
+            <!-- Stats Grid (After Sign In) -->
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-header">

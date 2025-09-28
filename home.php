@@ -423,70 +423,247 @@
             border-color: white;
         }
 
-        /* Quick Actions */
-        .quick-actions {
-            background: white;
-            border-radius: 0.75rem;
-            border: 1px solid #e2e8f0;
+        /* Futuristic Features Section */
+        .futuristic-features {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
             overflow: hidden;
         }
 
-        .quick-actions-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid #e2e8f0;
+        .futuristic-features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(0, 255, 128, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        .quick-actions-header h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #1e293b;
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
-
-        .action-item {
-            padding: 1.5rem;
-            border-right: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
+        .features-title {
             text-align: center;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            color: #64748b;
+            margin-bottom: 4rem;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
-        .action-item:hover {
-            background: #f8fafc;
-            color: #1e293b;
+        .glitch-text {
+            position: relative;
+            color: #00f5ff;
+            text-shadow: 0 0 10px #00f5ff, 0 0 20px #00f5ff, 0 0 30px #00f5ff;
+            animation: glitch 2s infinite;
         }
 
-        .action-item:last-child {
-            border-right: none;
+        @keyframes glitch {
+            0%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-2px) skew(-5deg); }
+            20% { transform: translateX(2px) skew(5deg); }
+            30% { transform: translateX(-1px) skew(-3deg); }
+            40% { transform: translateX(1px) skew(3deg); }
+            50% { transform: translateX(-2px) skew(-2deg); }
         }
 
-        .action-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 1rem;
-            background: #f1f5f9;
-            border-radius: 0.75rem;
+        .features-3d-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            perspective: 1000px;
+        }
+
+        .feature-3d-card {
+            position: relative;
+            height: 220px;
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            cursor: pointer;
+        }
+
+        .feature-3d-card:hover {
+            transform: rotateY(15deg) rotateX(10deg) translateZ(50px);
+        }
+
+        .card-3d-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-3d-inner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg,
+                transparent,
+                rgba(0, 245, 255, 0.1),
+                transparent,
+                rgba(255, 0, 128, 0.1),
+                transparent
+            );
+            animation: rotate-border 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-3d-card:hover .card-3d-inner::before {
+            opacity: 1;
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hologram-icon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: #3b82f6;
+            font-size: 2rem;
+            color: #00f5ff;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.2), transparent);
+            border-radius: 50%;
+            animation: float-hologram 3s ease-in-out infinite;
         }
 
-        .action-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
+        @keyframes float-hologram {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-10px) rotateY(180deg); }
         }
 
-        .action-desc {
-            font-size: 0.875rem;
-            color: #64748b;
+        .hologram-rings {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-in-out infinite;
+        }
+
+        .hologram-rings::before,
+        .hologram-rings::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            border-radius: 50%;
+            animation: pulse-ring 2s ease-in-out infinite;
+        }
+
+        .hologram-rings::after {
+            top: -25px;
+            left: -25px;
+            right: -25px;
+            bottom: -25px;
+            border-color: rgba(255, 0, 128, 0.2);
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        .feature-3d-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-3d-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 3;
+            margin-bottom: 1rem;
+        }
+
+        .neural-network {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0.6;
+        }
+
+        .node {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #00f5ff, #ff0080);
+            border-radius: 50%;
+            animation: neural-pulse 1.5s ease-in-out infinite;
+        }
+
+        .node:nth-child(2) { animation-delay: 0.3s; }
+        .node:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes neural-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        /* Tilt Effect */
+        .feature-3d-card[data-tilt] {
+            transform-style: preserve-3d;
+        }
+
+        /* Holographic Scanner Effect */
+        .card-3d-inner::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 245, 255, 0.4),
+                transparent
+            );
+            transition: top 0.8s ease;
+        }
+
+        .feature-3d-card:hover .card-3d-inner::after {
+            top: 100%;
         }
 
         /* Mobile Responsive */
@@ -516,8 +693,22 @@
                 grid-template-columns: 1fr;
             }
 
-            .actions-grid {
+            .features-3d-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .features-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .feature-3d-card {
+                height: 200px;
+            }
+
+            .feature-3d-card:hover {
+                transform: translateY(-10px) scale(1.02);
             }
 
             .cta-buttons {
@@ -788,44 +979,142 @@
             </section>
             <?php endif; ?>
 
-            <!-- Quick Actions -->
-            <section class="quick-actions" id="quick-actions">
-                <div class="quick-actions-header">
-                    <h3><?php echo $isAuthenticated && $user ? 'Quick Actions' : 'Get Started'; ?></h3>
-                </div>
-                
-                <div class="actions-grid">
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="action-title">Smart Flashcards</div>
-                        <div class="action-desc">AI-powered spaced repetition</div>
-                    </a>
+            <!-- Futuristic Features Grid -->
+            <section class="futuristic-features" id="features">
+                <div class="features-container">
+                    <h2 class="features-title">
+                        <span class="glitch-text">Get Started</span>
+                    </h2>
                     
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-clock"></i>
+                    <div class="features-3d-grid">
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-brain"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Smart Flashcards</h3>
+                                <p class="feature-3d-desc">AI-powered spaced repetition</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="action-title">Focus Timer</div>
-                        <div class="action-desc">Pomodoro technique sessions</div>
-                    </a>
-                    
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-question-circle"></i>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-clock"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Focus Timer</h3>
+                                <p class="feature-3d-desc">Pomodoro technique sessions</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="action-title">Practice Quizzes</div>
-                        <div class="action-desc">Test your knowledge</div>
-                    </a>
-                    
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-users"></i>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Practice Quizzes</h3>
+                                <p class="feature-3d-desc">Test your knowledge</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="action-title">Study Groups</div>
-                        <div class="action-desc">Collaborate with peers</div>
-                    </a>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-users"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Study Groups</h3>
+                                <p class="feature-3d-desc">Collaborate with peers</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-sticky-note"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Smart Notes</h3>
+                                <p class="feature-3d-desc">Advanced note-taking</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Analytics</h3>
+                                <p class="feature-3d-desc">Performance insights</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-trophy"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Achievements</h3>
+                                <p class="feature-3d-desc">Unlock rewards</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-3d-card" data-tilt>
+                            <div class="card-3d-inner">
+                                <div class="hologram-icon">
+                                    <i class="fas fa-calendar"></i>
+                                    <div class="hologram-rings"></div>
+                                </div>
+                                <h3 class="feature-3d-title">Daily Review</h3>
+                                <p class="feature-3d-desc">Track progress daily</p>
+                                <div class="neural-network">
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                    <div class="node"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -844,6 +1133,62 @@
                 }
             });
         });
+
+        // Enhanced 3D Tilt Effect
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(50px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+            });
+        });
+
+        // Intersection Observer for staggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) rotateX(0deg)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards for staggered entrance
+        document.querySelectorAll('.feature-3d-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px) rotateX(-15deg)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Holographic scanning effect
+        setInterval(() => {
+            const cards = document.querySelectorAll('.feature-3d-card');
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            const scanner = randomCard.querySelector('.card-3d-inner::after');
+            if (scanner) {
+                scanner.style.animation = 'scan 1s ease-in-out';
+            }
+        }, 3000);
     </script>
 </body>
 </html>

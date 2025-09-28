@@ -772,11 +772,70 @@
                 <?php endif; ?>
             </section>
 
-            <!-- Features Showcase (Before Sign In) -->
-            <?php if (!$isAuthenticated || !$user): ?>
+            <!-- Stats Grid (After Sign In) -->
+            <?php if ($isAuthenticated && $user): ?>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Study Time Today</span>
+                        <div class="stat-icon blue">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">2h 34m</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +12% from yesterday
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Cards Reviewed</span>
+                        <div class="stat-icon green">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">147</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +28 new cards
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Current Streak</span>
+                        <div class="stat-icon purple">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">12 days</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        Personal best!
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-title">Points Earned</span>
+                        <div class="stat-icon orange">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i>
+                        +89 today
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Showcase (After Sign In) -->
             <section class="features-showcase">
                 <div class="features-header">
-                    <h2>Powerful Study Features</h2>
+                    <h2>Your Study Tools</h2>
                     <p>Everything you need to excel in your studies, all in one platform</p>
                 </div>
                 
@@ -885,83 +944,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="cta-section">
-                    <h3>Ready to Transform Your Learning?</h3>
-                    <p>Join thousands of students already achieving their academic goals</p>
-                    <div class="cta-buttons">
-                        <a href="pages/register.php" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i>
-                            Start Free Today
-                        </a>
-                        <a href="pages/login.php" class="btn btn-outline">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Sign In
-                        </a>
-                    </div>
-                </div>
             </section>
-            
-            <?php else: ?>
-            
-            <!-- Stats Grid (After Sign In) -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <span class="stat-title">Study Time Today</span>
-                        <div class="stat-icon blue">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value">2h 34m</div>
-                    <div class="stat-change positive">
-                        <i class="fas fa-arrow-up"></i>
-                        +12% from yesterday
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <span class="stat-title">Cards Reviewed</span>
-                        <div class="stat-icon green">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value">147</div>
-                    <div class="stat-change positive">
-                        <i class="fas fa-arrow-up"></i>
-                        +28 new cards
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <span class="stat-title">Current Streak</span>
-                        <div class="stat-icon purple">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value">12 days</div>
-                    <div class="stat-change positive">
-                        <i class="fas fa-arrow-up"></i>
-                        Personal best!
-                    </div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <span class="stat-title">Points Earned</span>
-                        <div class="stat-icon orange">
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="stat-value">1,247</div>
-                    <div class="stat-change positive">
-                        <i class="fas fa-arrow-up"></i>
-                        +89 today
-                    </div>
-                </div>
-            </div>
             <?php endif; ?>
 
             <!-- Quick Actions -->
